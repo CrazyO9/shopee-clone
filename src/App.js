@@ -11,11 +11,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/mall" replace />} />
-        <Route path="/" element={<Layout />}>
-          <Route path="/mall" element={<HomePage />} />
-          <Route path="/mall/:categoryName" element={<ProductCollectionPage />} />
-          <Route path="/mall/:productName" element={<ProductPage />} />
-        </Route>
+        <Route path="/mall" element={<HomePage />} />
+        <Route path="/mall/:categoryName" element={<ProductCollectionPage />} />
+        <Route path="/:productName" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<NotFoundPage />} />
