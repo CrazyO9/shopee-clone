@@ -10,6 +10,7 @@ import QRCode from '../imgs/QRCode.png';
 import AppStore from '../imgs/appstore.png';
 import GooglePlay from '../imgs/googleplay.png';
 import AppGellxy from '../imgs/appgellexy.png';
+import { FacebookOutlined, InstagramOutlined, LinkedinOutlined } from "@ant-design/icons";
 
 const StyledFooter = styled.footer`
 background-color: #fbfbfb;
@@ -64,9 +65,9 @@ const Footer = () => {
                 <FooterColumn>
                     <FooterColumnTitle>付款</FooterColumnTitle>
                     <FlexBox>
-                    <img src={MasterCradLogo} alt="MasterCradLogo" style={{ width: "20%" }} />
-                    <img src={JCBLogo} alt="JCBLogo" style={{ width: "20%" }} />
-                    <img src={VISALogo} alt="VISALogo" style={{ width: "20%" }} />
+                        <img src={MasterCradLogo} alt="MasterCradLogo" style={{ width: "20%" }} />
+                        <img src={JCBLogo} alt="JCBLogo" style={{ width: "20%" }} />
+                        <img src={VISALogo} alt="VISALogo" style={{ width: "20%" }} />
                     </FlexBox>
                     <FooterColumnTitle>物流合作</FooterColumnTitle>
                     <img src={CSVLogo} alt="csv_logo" style={{ width: "60%" }} />
@@ -75,20 +76,29 @@ const Footer = () => {
                 </FooterColumn>
                 <FooterColumn>
                     <FooterColumnTitle>關注我們</FooterColumnTitle>
-                    <Link to="/">FB</Link>
-                    <Link to="/">IG</Link>
+                    <Link to="/">
+                        <FacebookOutlined style={{fontSize: 16,marginRight:4}}/>
+                        FaceBook
+                    </Link>
+                    <Link to="/">
+                        <InstagramOutlined style={{fontSize: 16,marginRight:4}}/>
+                        Instagram
+                    </Link>
                     <Link to="/">Line</Link>
-                    <Link to="/">LinkedIn</Link>
+                    <Link to="/">
+                        <LinkedinOutlined style={{fontSize: 16,marginRight:4}}/>
+                        LinkedIn
+                    </Link>
                     <Link to="/">蝦品輯部落格</Link>
                 </FooterColumn>
                 <FooterColumn>
                     <FooterColumnTitle>下載蝦皮</FooterColumnTitle>
                     <FlexBox >
-                        <img src={QRCode} alt="qrcode" style={{ marginRight: 12 }}/>
+                        <img src={QRCode} alt="qrcode" style={{ marginRight: 12 }} />
                         <FlexBox style={{ flexDirection: "column" }}>
-                        <img src={AppStore} alt="AppStore" style={{ width: "100%" }}/>
-                        <img src={GooglePlay} alt="GooglePlay" style={{ width: "100%" }}/>
-                        <img src={AppGellxy} alt="AppGellxy" style={{ width: "100%" }}/>
+                            <img src={AppStore} alt="AppStore" style={{ width: "100%" }} />
+                            <img src={GooglePlay} alt="GooglePlay" style={{ width: "100%" }} />
+                            <img src={AppGellxy} alt="AppGellxy" style={{ width: "100%" }} />
                         </FlexBox>
                     </FlexBox>
                 </FooterColumn>

@@ -5,7 +5,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductCollectionPage from "./pages/ProductCollectionPage";
 import ProductPage from "./pages/ProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ScrollToTop from "./pages/components/ScroolToTop";
+import ScrollToTop from "./pages/components/ScrollToTop";
 
 const App = () => {
   return (

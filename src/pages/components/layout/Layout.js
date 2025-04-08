@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Container from "./Container";
 
 const PageHeader = styled.div`
+    z-index:1;
     ${(props) =>
         props.fixed &&
         css`
