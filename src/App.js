@@ -6,7 +6,7 @@ import ProductCollectionPage from "./pages/ProductCollectionPage";
 import ProductPage from "./pages/ProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ScrollToTop from "./pages/components/ScrollToTop";
-import LogginPage from "./pages/LogginPage";
+import LogginPage from "./pages/LoginPage";
 import { AuthProvider } from "./pages/components/auth/authContext";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Navigate to="/mall" replace />} />
           <Route path="/mall" element={<HomePage />} />
-          <Route path="/loggin" element={<LogginPage />} />
+          <Route path="/login" element={<LogginPage />} />
           <Route path="/mall/:categoryName" element={<ProductCollectionPage />} />
           <Route path="/:productName" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />

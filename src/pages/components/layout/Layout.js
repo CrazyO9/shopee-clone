@@ -12,12 +12,15 @@ const PageHeader = styled.div`
     `};
 `;
 
-const DefaultLayout = ({ fixedHeader, children }) => {
+const DefaultLayout = ({ fixedHeader, isFill, children }) => {
     return (<>
         <PageHeader fixed={fixedHeader} >
             <Header />
         </PageHeader>
-        <Container>{children}</Container>
+        {isFill ? (
+            <>{ children }</>
+        ) : (
+            <Container>{children}</Container>)}
         <Footer />
     </>)
 }

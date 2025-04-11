@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import DefaultLayout from "./components/layout/Layout";
 import ClearFixed from "./components/ClearFixed";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import Banner2 from "./components/imgs/banners/banner2.avif"
 import Banner3 from "./components/imgs/banners/banner3.avif"
 import { Link } from "react-router-dom";
 import ProductCard from "./components/product/ProductCard";
+import AuthContext from "./components/auth/authContext";
 
 
 const BannerBox = styled.div`
@@ -25,14 +26,17 @@ border-left: 1px solid rgba(0,0,0,.1);
 `;
 const BannerSecsionContainer = styled.div`
 width: 100%;
-padding: 1px;
-@media (min-width: 769px) {
-    width: ${(props => `${props.width}`)}%;    
+padding: 0px;
+@media (min-width: 1353px) {
+    width: ${(props => `${props.width}`)}%;
+    padding: 1px;
 }
 `;
 const BannerContainer = styled.div`
 width: 100%;
+@media (min-width: 1353px) {
 padding: 1px;
+}
 `;
 const ProductCollectionContainer = styled(BannerBox)`
 display: flex;
@@ -71,27 +75,26 @@ width: 33%;
     width: 16%;
 }
 `;
+const WelcomeBack = styled.div`
+font-size: 24px;
+`;
 const HomePage = () => {
-    return <DefaultLayout fixedHeader={true}>
+    const { isAuthenticated, LoginUsername } = useContext(AuthContext)
+    return <DefaultLayout fixedHeader={true} isFill={false}>
         <ClearFixed />
+        {isAuthenticated && <WelcomeBack>{LoginUsername} 歡迎回來！</WelcomeBack>}
         <BannerBox>
             <BannerSecsionContainer width={66.7}>
                 <Carousel autoplay>
-                    <div>
-                        <Link to="/">
-                            <BannerImage height={200} url={Banner1}></BannerImage>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="/">
-                            <BannerImage height={200} url={Banner2}></BannerImage>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="/">
-                            <BannerImage height={200} url={Banner3}></BannerImage>
-                        </Link>
-                    </div>
+                    <Link to="/">
+                        <BannerImage height={200} url={Banner1}></BannerImage>
+                    </Link>
+                    <Link to="/">
+                        <BannerImage height={200} url={Banner2}></BannerImage>
+                    </Link>
+                    <Link to="/">
+                        <BannerImage height={200} url={Banner3}></BannerImage>
+                    </Link>
                 </Carousel>
             </BannerSecsionContainer>
             <BannerSecsionContainer width={33}>

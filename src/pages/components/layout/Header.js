@@ -2,16 +2,18 @@ import styled from "styled-components";
 import Container from "./Container";
 import Logo from "../imgs/icons8-shopee-100.png";
 import TextLogo from "../imgs/shopee-text-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Input } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import { useContext } from "react";
+import AuthContext from "../auth/authContext";
 
 const { Search } = Input;
 const onSearch = (value, _e, info) =>
     console.log(info === null || info === void 0 ? void 0 : info.source, value);
 
 const StyledHeader = styled.header`
-background-color: #d1011d;
+background-color: ${(props) => props.BGC ? props.BGC : '#d1011d'};
 width: 100vw;
 padding: 16px 0;
 `;
@@ -41,8 +43,14 @@ height: 40px;
 const StyledTextLogo = styled.img`
 `;
 
-const Header = () => {
-    return <StyledHeader>
+const Header = ({ headerColor }) => {
+    const { isAuthenticated, LoginUsername, UserLogout } = useContext(AuthContext);
+    const location = useLocation();
+    const isLoginPage = location.pathname === "/login";
+    const logout = () => {
+        UserLogout();
+    }
+    return <StyledHeader BGC={headerColor}>
         <Container>
             <StyledHeaderSession>
                 <Navgator>
@@ -54,7 +62,13 @@ const Header = () => {
                 <Toolbar>
                     <a href="#!">通知</a>
                     <a href="#!">幫助中心</a>
-                    <a href="#!">帳號</a>
+                    {isAuthenticated ? (
+                        <>
+                            <Link to="/">{LoginUsername}</Link>
+                            <span onClick={() => logout()}>登出</span>
+                        </>
+                    ) : (
+                        <Link to="/login">帳號</Link>)}
                 </Toolbar>
             </StyledHeaderSession>
             <StyledHeaderSession>
@@ -64,7 +78,7 @@ const Header = () => {
                         <StyledTextLogo src={TextLogo}></StyledTextLogo>
                     </Link>
                 </StyledHeaderSession>
-                <StyledHeaderSession>
+                {!isLoginPage && <StyledHeaderSession>
                     <Search
                         style={{ marginRight: 8 }}
                         placeholder="在商城搜尋"
@@ -73,7 +87,7 @@ const Header = () => {
                     <Link to="/cart">
                         <ShoppingCartOutlined style={{ fontSize: 32, color: '#FFF' }} />
                     </Link>
-                </StyledHeaderSession>
+                </StyledHeaderSession>}
             </StyledHeaderSession>
         </Container>
     </StyledHeader>
