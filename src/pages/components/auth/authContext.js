@@ -16,20 +16,11 @@ export const AuthProvider = ({ children }) => {
     const [LoginUsername, setLoginUsername] = useState(
         defaultContextValue.LoginUsername,
     );
-    useEffect(() => {
-        // 防止JSON錯誤，如果錯誤就什麼也不做
-        try {
-            const authState = JSON.parse(localStorage.getItem('shopee:auth.state'))
-            if (authState && authState.token) {
-                setIsAuthenticated(true);
-            }
-        } catch { }
-    }, [])
     const UserLogin = async (Username, password) => {
         const token = "good_token"
         if (Username === "allaboutlove" && password === "5201314") {
 
-            localStorage.setItem('shopee:auth.state', JSON.stringify({ token }))
+            localStorage.setItem('shopee:auth.state', JSON.stringify({ token , Username}))
             setIsAuthenticated(true)
             setLoginUsername(Username)
             return { token };
@@ -42,6 +33,16 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('shopee:auth.state')
         setIsAuthenticated(false)
     }
+    useEffect(() => {
+        // 防止JSON錯誤，如果錯誤就什麼也不做
+        try {
+            const authState = JSON.parse(localStorage.getItem('shopee:auth.state'))
+            if (authState && authState.token) {
+                setIsAuthenticated(true);
+                setLoginUsername(authState.Username);
+            }
+        } catch { }
+    }, [])
     return <AuthContext.Provider
         value={{
             isAuthenticated,
