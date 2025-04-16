@@ -4,7 +4,8 @@ const Container = styled.div`
  width: 90%;
  margin: auto;
  @media (min-width: 769px) {
-    width: 98%;    
+   width: 90%;    
+   margin: auto;
  }
 `;
 

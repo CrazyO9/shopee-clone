@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import DefaultLayout from "./components/layout/Layout";
 import ClearFixed from "./components/ClearFixed";
 import styled from "styled-components";
@@ -9,12 +9,12 @@ import Banner2 from "./components/imgs/banners/banner2.avif"
 import Banner3 from "./components/imgs/banners/banner3.avif"
 import { Link } from "react-router-dom";
 import ProductCard from "./components/product/ProductCard";
-import AuthContext from "./components/auth/authContext";
-
+import PopupModal from "./components/popupModal";
 
 const BannerBox = styled.div`
     display:flex;
-    align-items:center;
+    justify-content:space-between;
+    align-items:stretch;
     flex-wrap:wrap;
 `;
 const BannerFeatureContainer = styled(BannerBox)`
@@ -26,21 +26,22 @@ border-left: 1px solid rgba(0,0,0,.1);
 `;
 const BannerSecsionContainer = styled.div`
 width: 100%;
-padding: 0px;
+display:flex;
+flex-direction:column;
 @media (min-width: 1353px) {
     width: ${(props => `${props.width}`)}%;
-    padding: 1px;
+    height: 100%;
 }
 `;
 const BannerContainer = styled.div`
 width: 100%;
 @media (min-width: 1353px) {
-padding: 1px;
+
 }
 `;
 const ProductCollectionContainer = styled(BannerBox)`
 display: flex;
-justify-content: space-evenly;
+justify-content: space-between;
 align-content: center;
 width: 100%;
 `;
@@ -75,17 +76,16 @@ width: 33%;
     width: 16%;
 }
 `;
-const WelcomeBack = styled.div`
-font-size: 24px;
+const StyledCarousel = styled(Carousel)`
+height: 100%;
 `;
 const HomePage = () => {
-    const { isAuthenticated, LoginUsername } = useContext(AuthContext)
     return <DefaultLayout fixedHeader={true} isFill={false}>
         <ClearFixed />
-        {isAuthenticated && <WelcomeBack>{LoginUsername} 歡迎回來！</WelcomeBack>}
+        <PopupModal />
         <BannerBox>
-            <BannerSecsionContainer width={66.7}>
-                <Carousel autoplay>
+            <BannerSecsionContainer width={66.5}>
+                <StyledCarousel>
                     <Link to="/">
                         <BannerImage height={200} url={Banner1}></BannerImage>
                     </Link>
@@ -95,17 +95,17 @@ const HomePage = () => {
                     <Link to="/">
                         <BannerImage height={200} url={Banner3}></BannerImage>
                     </Link>
-                </Carousel>
+                </StyledCarousel>
             </BannerSecsionContainer>
-            <BannerSecsionContainer width={33}>
-                <BannerContainer>
+            <BannerSecsionContainer width={33.4} style={{ justifyContent: 'space-between' }}>
+                <BannerContainer style={{ paddingBottom: 2 }}>
                     <Link to="/">
-                        <BannerImage height={100} url={Banner2}></BannerImage>
+                        <BannerImage height={99} url={Banner2}></BannerImage>
                     </Link>
                 </BannerContainer>
-                <BannerContainer>
+                <BannerContainer style={{ paddingBottom: 2 }}>
                     <Link to="/">
-                        <BannerImage height={100} url={Banner3}></BannerImage>
+                        <BannerImage height={99} url={Banner3}></BannerImage>
                     </Link>
                 </BannerContainer>
             </BannerSecsionContainer>
@@ -149,22 +149,22 @@ const HomePage = () => {
         <CustomizeImage height={200} url={Banner2} />
         <ProductCollectionContainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[123]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[123]} />
             </ProductCotainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[123]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[123]} />
             </ProductCotainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321]} />
             </ProductCotainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321]} />
             </ProductCotainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321, 456]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321, 456]} />
             </ProductCotainer>
             <ProductCotainer>
-                <ProductCard linkTo="/" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321, 456]} />
+                <ProductCard linkTo="/123" title="HAHAHA" coverUrl={Banner2} listPrices={[123]} salePrices={[321, 456]} />
             </ProductCotainer>
         </ProductCollectionContainer>
     </DefaultLayout>;

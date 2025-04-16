@@ -60,10 +60,9 @@ const LoginForm = () => {
 
     useEffect(() => {
         isAuthenticated && navigate("/")
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
     const handleClick = () => {
-        console.log('login');
         UserLogin(username, password).then(({ token, error }) => {
             if (!token) {
                 message.error(error);
@@ -78,12 +77,14 @@ const LoginForm = () => {
                 prefix={<UserOutlined />}
                 value={username}
                 onChange={e => setUsername(e.target.value)}
+                onPressEnter={handleClick}
                 style={{ width: '100%', alignSelf: 'center', padding: 8 }} />
             <Input.Password
                 placeholder="輸入密碼"
                 prefix={<LockFilled />}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                onPressEnter={handleClick}
                 style={{ width: '100%', alignSelf: 'center', padding: 8 }} />
             <Button
                 color="danger"

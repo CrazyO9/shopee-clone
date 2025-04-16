@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Container from "./Container";
 
 const PageHeader = styled.div`
-    z-index:1;
+    z-index:99;
     ${(props) =>
         props.fixed &&
         css`
@@ -18,7 +18,7 @@ const DefaultLayout = ({ fixedHeader, isFill, children }) => {
             <Header />
         </PageHeader>
         {isFill ? (
-            <>{ children }</>
+            <>{children}</>
         ) : (
             <Container>{children}</Container>)}
         <Footer />

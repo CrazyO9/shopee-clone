@@ -9,19 +9,16 @@ import { useContext } from "react";
 import AuthContext from "../auth/authContext";
 
 const { Search } = Input;
-const onSearch = (value, _e, info) =>
-    console.log(info === null || info === void 0 ? void 0 : info.source, value);
 
 const StyledHeader = styled.header`
 background-color: ${(props) => props.BGC ? props.BGC : '#d1011d'};
 width: 100vw;
-padding: 16px 0;
 `;
 const StyledHeaderSession = styled.div`
     display:flex;
     justify-content: space-between;
     align-items:center;
-    padding-top: 8px;
+    padding: 8px 0 ;
 `;
 const Navgator = styled.div`
 a{
@@ -31,9 +28,10 @@ a{
 }
 `;
 const Toolbar = styled.div`
-a{
-    margin: 0 8px;
     color: #fff;
+    a{
+    color: #fff;
+    margin: 0 8px;
     text-decoration-line: none;
 }
 `;
@@ -41,6 +39,15 @@ const StyledLogo = styled.img`
 height: 40px;
 `;
 const StyledTextLogo = styled.img`
+`;
+const StyledSearch = styled(Search)`
+margin-right: 24px;
+width: 40vw;
+button {
+    background-color: #d1011d;
+    border: 4px solid #fff;
+    
+}
 `;
 
 const Header = ({ headerColor }) => {
@@ -54,18 +61,18 @@ const Header = ({ headerColor }) => {
         <Container>
             <StyledHeaderSession>
                 <Navgator>
-                    <a href="#!">蝦皮購物</a>
-                    <a href="#!">下載</a>
-                    <a href="#!">聯絡我們</a>
-                    <a href="#!">部落格</a>
+                    <Link to="/123">蝦皮購物</Link>
+                    <Link to="/123">下載</Link>
+                    <Link to="/123">聯絡我們</Link>
+                    <Link to="/123">部落格</Link>
                 </Navgator>
                 <Toolbar>
-                    <a href="#!">通知</a>
-                    <a href="#!">幫助中心</a>
+                    <Link to="/123">通知</Link>
+                    <Link to="/123">幫助中心</Link>
                     {isAuthenticated ? (
                         <>
                             <Link to="/">{LoginUsername}</Link>
-                            <span onClick={() => logout()}>登出</span>
+                            <span onClick={logout} style={{ cursor: 'pointer' }}>登出</span>
                         </>
                     ) : (
                         <Link to="/login">帳號</Link>)}
@@ -79,11 +86,13 @@ const Header = ({ headerColor }) => {
                     </Link>
                 </StyledHeaderSession>
                 {!isLoginPage && <StyledHeaderSession>
-                    <Search
-                        style={{ marginRight: 8 }}
+                    <StyledSearch
                         placeholder="在商城搜尋"
-                        onSearch={onSearch}
-                        enterButton />
+                        onSearch={""}
+                        size="large"
+                        enterButton
+                        addonBg="rgba(209,1,29,0)"
+                        allowClear />
                     <Link to="/cart">
                         <ShoppingCartOutlined style={{ fontSize: 32, color: '#FFF' }} />
                     </Link>
