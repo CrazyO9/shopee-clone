@@ -9,7 +9,7 @@ import Banner2 from "./components/imgs/banners/banner2.avif"
 import Banner3 from "./components/imgs/banners/banner3.avif"
 import { Link } from "react-router-dom";
 import ProductCard from "./components/product/ProductCard";
-import PopupModal from "./components/popupModal";
+import PopupModal from "./components/PopupModal";
 
 const BannerBox = styled.div`
     display:flex;
