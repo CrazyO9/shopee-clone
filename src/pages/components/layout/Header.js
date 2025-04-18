@@ -3,7 +3,7 @@ import Container from "./Container";
 import Logo from "../imgs/icons8-shopee-100.png";
 import TextLogo from "../imgs/shopee-text-logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { Input } from "antd";
+import { Input, Popover } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useContext } from "react";
 import AuthContext from "../auth/authContext";
@@ -49,7 +49,9 @@ button {
     
 }
 `;
+const StyledPopover = styled(Popover)`
 
+`;
 const Header = ({ headerColor }) => {
     const { isAuthenticated, LoginUsername, UserLogout } = useContext(AuthContext);
     const location = useLocation();
@@ -94,7 +96,9 @@ const Header = ({ headerColor }) => {
                         addonBg="rgba(209,1,29,0)"
                         allowClear />
                     <Link to="/cart">
-                        <ShoppingCartOutlined style={{ fontSize: 32, color: '#FFF' }} />
+                        <StyledPopover placement="bottomRight" title="最近加入的商品" content="BBB">
+                            <ShoppingCartOutlined style={{ fontSize: 32, color: '#FFF' }} />
+                        </StyledPopover>
                     </Link>
                 </StyledHeaderSession>}
             </StyledHeaderSession>
