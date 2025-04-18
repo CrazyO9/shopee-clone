@@ -85,7 +85,7 @@ const HomePage = () => {
         <PopupModal />
         <BannerBox>
             <BannerSecsionContainer width={66.5}>
-                <StyledCarousel>
+                <StyledCarousel autoplay>
                     <Link to="/">
                         <BannerImage height={200} url={Banner1}></BannerImage>
                     </Link>
